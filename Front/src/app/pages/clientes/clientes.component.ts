@@ -21,12 +21,14 @@ export class ClientesComponent implements OnInit {
     });
   }
 
-  editarProducto(producto: ClienteModel){
-    console.log("Producto a editar:", producto);
+  editarCliente(cliente: ClienteModel){
+    console.log("Cliente a editar:", cliente);
+    alert("El cliente a editar es:"+ cliente.cedula);
   }
 
-  eliminarProducto(producto: ClienteModel){
-    console.log("Producto a eliminar:", producto);
+  eliminarCliente(cliente: ClienteModel){
+    console.log("Cliente a eliminar:", cliente);
+    alert("El cliente a eliminar es:"+ cliente.cedula);
   }
 
 }
