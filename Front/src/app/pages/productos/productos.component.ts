@@ -46,6 +46,7 @@ export class ProductosComponent implements OnInit {
     this.res.subscribe((datos: any[]) => {
       this.contenido = datos;
       console.log(this.contenido);
+      this.dtTrigger.next(this.dtOptions);
     });
 
     //funcion para configurar la datatable
@@ -103,6 +104,12 @@ export class ProductosComponent implements OnInit {
     console.log(this.file);
     this.resultados = await this.ProductosService.upload(this.file);
     console.log(this.resultados);
+  }
+
+
+  // Metodo DataTables
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
   }
 
 
