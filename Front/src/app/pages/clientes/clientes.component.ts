@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ClienteModel } from "src/app/models/cliente.dto";
-import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-clientes',
@@ -9,24 +7,9 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class ClientesComponent implements OnInit {
 
-  listaClientes: ClienteModel[] = [];
+  constructor() { }
 
-  constructor(private httpService: HttpService) { }
-
-  ngOnInit() {
-    this.httpService.peticionGet("clientes").subscribe((respuesta: any) => {
-      respuesta.forEach(cliente => {
-        this.listaClientes.push(cliente);
-      });
-    });
-  }
-
-  editarProducto(producto: ClienteModel){
-    console.log("Producto a editar:", producto);
-  }
-
-  eliminarProducto(producto: ClienteModel){
-    console.log("Producto a eliminar:", producto);
+  ngOnInit(): void {
   }
 
 }
