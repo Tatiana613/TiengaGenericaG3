@@ -7,7 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
-
+import { DataTablesModule } from "angular-datatables";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
@@ -27,6 +27,7 @@ import { ClientesComponent } from './pages/clientes/clientes.component';
     RouterModule,
     AppRoutingModule,
     ToastrModule.forRoot(),
+    DataTablesModule
   ],
   declarations: [AppComponent, AdminLayoutComponent, LoginComponent, ProductosComponent, ClientesComponent],
   providers: [],

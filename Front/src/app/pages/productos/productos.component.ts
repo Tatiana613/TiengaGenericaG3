@@ -18,6 +18,10 @@ export class ProductosComponent implements OnInit {
   contenido: any;
   urlapiget: string = "http://localhost:8080/api/productos";
 
+  //funciones para las DatatTables
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Error desconocido!';
     if (error.error instanceof ErrorEvent) {
@@ -43,6 +47,48 @@ export class ProductosComponent implements OnInit {
       this.contenido = datos;
       console.log(this.contenido);
     });
+
+    //funcion para configurar la datatable
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      columns: [{
+        title: 'Código',
+      },{
+        title: 'Nombre Producto',
+      },{
+        title: 'Nit Proveedor',
+      },{
+        title: 'Precio Compra',
+      },{
+        title: 'Iva Compra',
+      },{
+        title: 'Precio Venta'
+      }],
+      pageLength: 10,
+      responsive: true,
+      language: {
+        processing: "Procesando...",
+        search: "Buscar:",
+        lengthMenu: "Mostrar _MENU_ elementos",
+        info: "Mostrando desde _START_ al _END_ de _TOTAL_ elementos",
+        infoEmpty: "Mostrando ningún elemento.",
+        infoFiltered: "(filtrado _MAX_ elementos total)",
+        infoPostFix: "",
+        loadingRecords: "Cargando registros...",
+        zeroRecords: "No se encontraron registros",
+        emptyTable: "No hay datos disponibles en la tabla",
+        paginate: {
+          first: "Primero",
+          previous: "Anterior",
+          next: "Siguiente",
+          last: "Último"
+        },
+        aria: {
+          sortAscending: ": Activar para ordenar la tabla en orden ascendente",
+          sortDescending: ": Activar para ordenar la tabla en orden descendente"
+        }
+      }
+    };
     
   }
 
