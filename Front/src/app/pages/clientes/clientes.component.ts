@@ -26,7 +26,7 @@ export class ClientesComponent implements OnInit {
         console.log(this.contenido);
       });
     }
-    
+    //aqui estuvo william
     codigoRespuesta!:number;
     res2:any
   
