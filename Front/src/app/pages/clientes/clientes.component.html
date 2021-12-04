@@ -1,280 +1,113 @@
 <div class=" content">
-    <div class=" row">
-      <div class=" col-md-7">
-        <div class=" card">
-          <div class=" card-header"><h4 class=" title"> Insertar Clientes</h4></div>
-            <div class=" card-body">
-              <div class=" row">
-                <div class=" col-md-6 pr-md-1">
-                  <div class=" form-group">
-                    <label> Cedula </label>
-                    <input
-                      class=" form-control"
-                      placeholder="Cedula"
-                      type="text"
-                      [(ngModel)]="cedulacliente"
-                      >
-                  </div>
+  <div class=" row">
+    <div class=" col-md-10">
+      <div class=" card">
+        <div class=" card-header">
+          <h4 class=" title"> Insertar Clientes</h4>
+        </div>
+        <div class=" card-body">
+          <form [formGroup]="clienteForm" (ngSubmit)="actualizarCliente()">
+
+            <input type="hidden" formControlName="id" name="" value="No me deberìa ver">
+
+            <div class=" row">
+              <div class=" col-md-6 pr-md-1">
+                <div class="form-group" [ngClass]="{'has-danger' : controladorErrores().cedula.errors?.required && controladorErrores().cedula.touched }">
+                  <label> Cédula </label>
+                  <input formControlName="cedula" class=" form-control" placeholder="Cédula" type="text" [readonly]="!clienteNuevo"/>
                 </div>
-                <div class=" col-md-6 px-md-1">
-                  <div class=" form-group">
-                    <label> Telefono </label>
-                    <input
-                      class=" form-control"
-                      placeholder="Numero de Telefono"
-                      type="number"
-                      [(ngModel)]="telefonocliente"
-                    />
-                  </div>
+              </div>
+
+              <div class=" col-md-6 px-md-1">
+                <div class="form-group" [ngClass]="{'has-danger' : controladorErrores().telefono.errors?.required && controladorErrores().telefono.touched }">
+                  <label> Teléfono </label>
+                  <input formControlName="telefono" class=" form-control" placeholder="Número de Teléfono"
+                    type="text" />
                 </div>
-                <div class=" col-md-6 pr-md-1">
-                  <div class=" form-group">
-                    <label> Nombre Completo </label>
-                    <input
-                      class=" form-control"
-                      placeholder="Nombre Cliente"
-                      type="text"
-                      [(ngModel)]="nombrecliente"
-                    />
-                  </div>
+              </div>
+
+              <div class=" col-md-6 pr-md-1">
+                <div class=" form-group" [ngClass]="{'has-danger' : controladorErrores().nombre.errors?.required && controladorErrores().nombre.touched }">
+                  <label> Nombre Completo </label>
+                  <input formControlName="nombre" class=" form-control" placeholder="Nombre Cliente" type="text" />
                 </div>
-                <div class=" col-md-6 pl-md-1">
-                  <div class=" form-group">
-                    <label> Correo electronico </label>
-                    <input
-                      class=" form-control"
-                      placeholder="alguien@email.com"
-                      type="email"
-                      [(ngModel)]="emailcliente"
-                    />
-                  </div>
+              </div>
+
+              <div class=" col-md-6 pl-md-1">
+                <div class=" form-group" [ngClass]="{'has-danger' : controladorErrores().correo.errors?.required && controladorErrores().correo.touched }">
+                  <label> Correo Electrónico </label>
+                  <input formControlName="correo" class=" form-control" placeholder="alguien@email.com" type="email" />
                 </div>
-                <div class=" col-md-12">
-                  <div class=" form-group">
-                    <label> Dirección </label>
-                    <input
-                      class=" form-control"
-                      placeholder="Dirección"
-                      type="text"
-                      [(ngModel)]="direccioncliente"
-                    />
-                  </div>
+              </div>
+
+              <div class=" col-md-12">
+                <div class=" form-group" [ngClass]="{'has-danger' : controladorErrores().direccion.errors?.required && controladorErrores().direccion.touched }">
+                  <label> Dirección </label>
+                  <input formControlName="direccion" class=" form-control" placeholder="Dirección" type="text" />
                 </div>
+              </div>
             </div>
 
-			<div class="container-btn-group">
+            <div class="container-btn-group">
 
-					<button type="button" (click)=postData() class="btn btn-danger">
-						<i class="fas fa-plus-circle"></i> Crear
-					</button>
-				
+              <button type="button" class="btn btn-danger"(click)="crearCliente()">
+                <i class="fas fa-plus-circle"></i> Crear
+              </button>
+              <button type="submit" class="btn btn-danger">
+                <i class="fas fa-pen-alt"></i> Actualizar
+              </button>
+              <button type="button" class="btn btn-danger" (click)="consultaClientes()">
+                <i class="fas fa-search"></i> Consultar
+              </button>
+            </div>
 
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-            <h4 class=" title"> Eliminar Clientes</h4></div>
+
+          </form>
+
+          <div class=" col-md-12" >
+            <div class=" card" style="background-color:#283747;">
+              <div class=" card-header">
+                <h4 class=" card-title">Lista Clientes</h4>
               </div>
               <div class=" card-body">
-                  <div class="text-center">
-                      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-  
-                          <div class="input-group mb-3">
-                              <span class="input-group-text">Cedula</span>
-                              <input type="text" class="form-control" [(ngModel)]="ceduladelete">
-                              <span class="input-group-text">
-                                  <i *ngIf="ceduladelete!=undefined && ceduladelete!=''"
-                                      class="fas fa-check correctovalidacion"></i>
-  
-                                  <i *ngIf="ceduladelete==undefined || ceduladelete==''"
-                                      class="fas fa-times errorvalidacion"></i>
-                              </span>
-                          </div>
-  
-                          <button class="btn btn-danger" (click)="eliminarCliente()">
-                              <i class="fas fa-trash"></i> Eliminar cliente
-                          </button>
-                      </div>
-        <div class=" col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-          <h4 class=" title"> Clientes</h4></div>
-              <div class=" card-body">
-                  <div class=" table-responsive">
-                      <table class=" table tablesorter" id="">
-                          <thead class=" text-primary">
-                          <tr>
-                            <th>Cedula Cliente</th>
-                            <th>Direccion Cliente</th>
-                            <th>Email Cliente</th>
-                            <th>Nombre Cliente</th>
-                            <th>Telefono Cliente</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
-                          </tr>
-                        </thead>
-                        <tr *ngFor="let cliente of contenido" class="">
-                          <td class="text-center">{{cliente.cedulacliente}}</td>
-                          <td class="text-center">{{cliente.direccioncliente}}</td>
-                          <td class="text-center">{{cliente.emailcliente}}</td>
-                          <td>{{cliente.nombrecliente}}</td>
-                          <td class="text-center">{{cliente.telefonocliente}}</td>
-                          <td class=" text-center">
-                            <a [routerLink]="" (click)="editarCliente(cliente)">
-                                <i class="tim-icons icon-pencil"></i>
-                            </a>
+                <div class=" table-responsive">
+                  <table class=" table tablesorter" id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th class=" text-center">Cédula</th>
+                        <th class=" text-center">Nombre Completo</th>
+                        <th class=" text-center">Dirección</th>
+                        <th class=" text-center">Teléfono</th>
+                        <th class=" text-center">Correo Electrónico</th>
+                        <th class=" text-center">Editar</th>
+                        <th class=" text-center">Eliminar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+
+                      <tr *ngFor="let cliente of listaClientes">
+                        <td class=" text-center">{{cliente.cedula}}</td>
+                        <td class=" text-center">{{cliente.nombreCompleto}}</td>
+                        <td class=" text-center">{{cliente.direccion}}</td>
+                        <td class=" text-center">{{cliente.telefono}}</td>
+                        <td class=" text-center">{{cliente.correoElectronico}}</td>
+                        <td class=" text-center">
+                          <a [routerLink]="" (click)="editarCliente(cliente)">
+                            <i class="tim-icons icon-pencil"></i>
+                          </a>
                         </td>
                         <td class=" text-center">
-                            <a [routerLink]="" (click)="eliminar(cliente)">
-                                <i class="tim-icons icon-simple-delete"></i>
-                            </a>
+                          <a [routerLink]="" (click)="eliminarCliente(cliente)">
+                            <i class="tim-icons icon-simple-delete"></i>
+                          </a>
                         </td>
-                    </tr>
-            </table>
-        </div>
-    </div>
-</div>
-
-<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-<h4 class=" title"> Actualizar Clientes</h4></div>
-      <div class=" card-body">
-          <div class="text-center">
-              <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-
-                  <div class="input-group mb-3">
-                      <span class="input-group-text">Cedula</span>
-                      <input type="text" class="form-control" [(ngModel)]="cedulasearch"
-                          (change)="buscarCliente()">
-                      <span class="input-group-text">
-                          <i *ngIf="cedulasearch!=undefined && cedulasearch!=''"
-                              class="fas fa-check correctovalidacion"></i>
-
-                          <i *ngIf="cedulasearch==undefined || cedulasearch==''"
-                              class="fas fa-times errorvalidacion"></i>
-                      </span>
-                  </div>
-
-                  <div class="input-group mb-3">
-                      <span class="input-group-text">Dirección</span>
-                      <input type="text" class="form-control" [(ngModel)]="direccionsearch">
-                      <span class="input-group-text">
-
-                          <i *ngIf="direccionsearch!=undefined && direccionsearch!=''"
-                              class="fas fa-check correctovalidacion"></i>
-
-                          <i *ngIf="direccionsearch==undefined || direccionsearch==''"
-                              class="fas fa-times errorvalidacion"></i>
-
-                      </span>
-                  </div>
-
-                  <div class="input-group mb-3">
-                      <span class="input-group-text">Email</span>
-                      <input type="text" class="form-control" [(ngModel)]="emailsearch">
-                      <span class="input-group-text">
-
-                          <i *ngIf="emailsearch!=undefined && emailsearch!=''"
-                              class="fas fa-check correctovalidacion"></i>
-
-                          <i *ngIf="emailsearch==undefined || emailsearch==''"
-                              class="fas fa-times errorvalidacion"></i>
-
-                      </span>
-                  </div>
-
-                  <div class="input-group mb-3">
-                      <span class="input-group-text">Nombre</span>
-                      <input type="text" class="form-control" [(ngModel)]="nombresearch">
-                      <span class="input-group-text">
-
-                          <i *ngIf="nombresearch!=undefined && nombresearch!=''"
-                              class="fas fa-check correctovalidacion"></i>
-
-                          <i *ngIf="nombresearch==undefined || nombresearch==''"
-                              class="fas fa-times errorvalidacion"></i>
-
-                      </span>
-                  </div>
-
-                  <div class="input-group mb-3">
-                      <span class="input-group-text">Telefono</span>
-                      <input type="text" class="form-control" [(ngModel)]="telefonosearch">
-                      <span class="input-group-text">
-
-                          <i *ngIf="telefonosearch!=undefined && telefonosearch!=''"
-                              class="fas fa-check correctovalidacion"></i>
-
-                          <i *ngIf="telefonosearch==undefined || telefonosearch==''"
-                              class="fas fa-times errorvalidacion"></i>
-
-                      </span>
-                  </div>
+                      </tr>
 
 
-              <button class="btn btn-danger" (click)="actualizarCliente()">
-                  <i class="fas fa-sync"></i> Actualizar cliente
-              </button>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
-        </div></div></div></div></div></div></div></div>
-
-  <div class="float-right">     
-  <div class=" row">  
-  <div class="col-md-16">
-    <div class=" card">
-      <div class=" card-header">
-        <div class=" card-header"><h4 class=" title"> Buscar Clientes</h4></div>
-          <div class=" card-body">
-            <div class="text-center">
-                      <span class="input-group-text">Cedula</span>
-                      <input type="text" class="form-control" [(ngModel)]="cedulasearch">
-                      <span class="input-group-text">
-                          <i *ngIf="cedulasearch!=undefined && cedulasearch!=''"
-                              class="fas fa-check correctovalidacion"></i>
-
-                          <i *ngIf="cedulasearch==undefined || cedulasearch==''"
-                              class="fas fa-times errorvalidacion"></i>
-
-                              <div class=" col-md-20">
-                                  <label> Telefono </label>
-                                  <input
-                                    class=" form-control"
-                                    type="number"
-                                    placeholder="Numero Cliente"
-                                    [(ngModel)]="telefonosearch"
-                                  />
-                              <div class=" col-md-20">
-                                <div class=" form-group">
-                                  <label> Nombre Completo </label>
-                                  <input
-                                    class=" form-control"
-                                    placeholder="Nombre Cliente"
-                                    type="text"
-                                    [(ngModel)]="nombresearch"
-                                  />
-                              <div class=" col-md-20">
-                                <div class=" form-group">
-                                  <label> Correo electronico </label>
-                                  <input
-                                    class=" form-control"
-                                    placeholder="cliente@email.com"
-                                    type="email"
-                                    [(ngModel)]="emailsearch"
-                                  />
-                                </div>
-                              </div>
-                              <div class=" col-md-20">
-                                <div class=" form-group">
-                                  <label> Dirección </label>
-                                  <input
-                                    class=" form-control"
-                                    placeholder="Dirección"
-                                    type="text"
-                                    [(ngModel)]="direccionsearch"
-                                  />
-                                </div>
-                              </div>
-                              <button class="btn btn-danger" (click)="buscar()">
-                      <i class="fas fa-trash"></i> Buscar Cliente
-                  </button>
-                  </div></div>
-              </div></span></div></div></div></div>
-
-
-	
-            
-              

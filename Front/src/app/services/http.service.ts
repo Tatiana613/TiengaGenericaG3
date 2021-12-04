@@ -15,7 +15,14 @@ export class HttpService {
   }
 
   peticionPost(endPoint: string, params: object){
-    return this.http.post(this.constantes.URL_BASE + endPoint, params);
+    return this.http.post(this.constantes.URL_BASE + endPoint, params, {observe: 'response'});
+  }
+
+  peticionDelete(endPoint: string, identificador:any ){
+    return this.http.delete(this.constantes.URL_BASE + endPoint + "/" +identificador,  {observe: 'response'});
+  }
+  peticionPut(endPoint: string, identificador:any, params: object){
+    return this.http.put(this.constantes.URL_BASE+ endPoint + "/" + identificador, params, {observe: 'response'});
   }
 
 }
