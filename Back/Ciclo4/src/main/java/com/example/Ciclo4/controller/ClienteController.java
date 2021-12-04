@@ -69,7 +69,7 @@ public class ClienteController {
 					client.getNombreCompleto(),
 					client.getDireccion(),
 					client.getTelefono(),
-					client.getTelefono()
+					client.getCorreoElectronico()
 					));
 			return new ResponseEntity<>(_cliente, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -89,6 +89,7 @@ public class ClienteController {
 			_cliente.setDireccion(client.getDireccion());
 			_cliente.setTelefono(client.getTelefono());
 			_cliente.setCorreoElectronico(client.getCorreoElectronico());
+			clienteRepository.save(_cliente);
 			return new ResponseEntity<>(_cliente, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
