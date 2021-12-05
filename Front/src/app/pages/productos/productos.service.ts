@@ -25,12 +25,12 @@ export class ProductosService {
             let columnas = linea_actual.split(",");
 
             this.httpobject.post(this.apiURL,{
-              "codigoproducto":columnas[0],
-              "nombreproducto":columnas[1],
-              "nitproveedor":columnas[2],
-              "preciocompra":columnas[3],
-              "ivacompra":columnas[4],
-              "precioventa":columnas[5]
+              "codigoProducto":columnas[0],
+              "nombreProducto":columnas[1],
+              "nitProveedor":columnas[2],
+              "precioCompra":columnas[3],
+              "ivaCompra":columnas[4],
+              "precioVenta":columnas[5]
             },{
               observe:'response'
             }).subscribe(
