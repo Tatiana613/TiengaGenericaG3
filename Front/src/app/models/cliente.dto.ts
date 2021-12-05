@@ -4,6 +4,6 @@ export interface ClienteModel{
     nombreCompleto: string,
     direccion: string,
     telefono: string,
-    correoElectronico: number,
+    correoElectronico: string,
 
 }
