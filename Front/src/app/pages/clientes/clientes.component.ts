@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ClienteModel } from "src/app/models/cliente.dto";
 import { HttpService } from 'src/app/services/http.service';
+import { Subject, throwError } from 'rxjs';
 
 
 @Component({
@@ -16,6 +17,10 @@ export class ClientesComponent implements OnInit {
 
   constructor(private httpService: HttpService, private formBuilder: FormBuilder) { }
 
+  //funciones para las DatatTables
+  dtOptions2: DataTables.Settings = {};
+  dtTrigger2: Subject<any> = new Subject<any>();
+
   ngOnInit() {
 
     this.clienteForm = this.formBuilder.group({
@@ -28,6 +33,50 @@ export class ClientesComponent implements OnInit {
     });
 
     this.consultaClientes();
+
+    //funcion para configurar la datatable
+  this.dtOptions2 = {
+    pagingType: 'full_numbers',
+    columns: [{
+      title: 'Cedula',
+    },{
+      title: 'Nombre Completo',
+    },{
+      title: 'Direccion',
+    },{
+      title: 'Telefono',
+    },{
+      title: 'Correo Electronico',
+    },{
+      title: 'Editar',
+    },{
+      title: 'Eliminar'
+    }],
+    pageLength: 10,
+    responsive: true,
+    language: {
+      processing: "Procesando...",
+      search: "Buscar:",
+      lengthMenu: "Mostrar _MENU_ elementos",
+      info: "Mostrando desde _START_ al _END_ de _TOTAL_ elementos",
+      infoEmpty: "Mostrando ningún elemento.",
+      infoFiltered: "(filtrado _MAX_ elementos total)",
+      infoPostFix: "",
+      loadingRecords: "Cargando registros...",
+      zeroRecords: "No se encontraron registros",
+      emptyTable: "No hay datos disponibles en la tabla",
+      paginate: {
+        first: "Primero",
+        previous: "Anterior",
+        next: "Siguiente",
+        last: "Último"
+      },
+      aria: {
+        sortAscending: ": Activar para ordenar la tabla en orden ascendente",
+        sortDescending: ": Activar para ordenar la tabla en orden descendente"
+      }
+    }
+  };
   }
 
   controladorErrores(){
@@ -39,7 +88,9 @@ export class ClientesComponent implements OnInit {
     this.httpService.peticionGet("clientes").subscribe((respuesta: any) => {
       respuesta.forEach(cliente => {
         this.listaClientes.push(cliente);
+        
       });
+      this.dtTrigger2.next(this.dtOptions2);
     });
   }
 
@@ -123,5 +174,13 @@ export class ClientesComponent implements OnInit {
       alert("Valide los datos del cliente");
     }
   }
+
+  // Metodo DataTables
+  ngOnDestroy(): void {
+    this.dtTrigger2.unsubscribe();
+    
+  }
+
+  
 
 }

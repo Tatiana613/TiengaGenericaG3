@@ -25,4 +25,8 @@ export class HttpService {
     return this.http.put(this.constantes.URL_BASE+ endPoint + "/" + identificador, params, {observe: 'response'});
   }
 
+  peticionGetC(endPoint: string, identificador:any){
+    return this.http.get(this.constantes.URL_BASE + endPoint + identificador);
+  }
+
 }

@@ -9,13 +9,14 @@ import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
 import { ProductosComponent } from "src/app/pages/productos/productos.component";
 import { ClientesComponent } from "src/app/pages/clientes/clientes.component";
+import { VentasComponent } from "src/app/pages/ventas/ventas.component";
 
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "productos", component: ProductosComponent },
-  { path: "dashboard", component: DashboardComponent },
+  { path: "ventas", component: VentasComponent },
   { path: "icons", component: IconsComponent },
   { path: "maps", component: MapComponent },
   { path: "notifications", component: NotificationsComponent },

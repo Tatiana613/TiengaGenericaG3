@@ -65,49 +65,35 @@
           </form>
 
           <div class=" col-md-12" >
-            <div class=" card" style="background-color:#283747;">
+            <div class=" card" >
               <div class=" card-header">
                 <h4 class=" card-title">Lista Clientes</h4>
               </div>
               <div class=" card-body">
-                <div class=" table-responsive">
-                  <table class=" table tablesorter" id="">
-                    <thead class=" text-primary">
-                      <tr>
-                        <th class=" text-center">Cédula</th>
-                        <th class=" text-center">Nombre Completo</th>
-                        <th class=" text-center">Dirección</th>
-                        <th class=" text-center">Teléfono</th>
-                        <th class=" text-center">Correo Electrónico</th>
-                        <th class=" text-center">Editar</th>
-                        <th class=" text-center">Eliminar</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-
-                      <tr *ngFor="let cliente of listaClientes">
-                        <td class=" text-center">{{cliente.cedula}}</td>
-                        <td class=" text-center">{{cliente.nombreCompleto}}</td>
-                        <td class=" text-center">{{cliente.direccion}}</td>
-                        <td class=" text-center">{{cliente.telefono}}</td>
-                        <td class=" text-center">{{cliente.correoElectronico}}</td>
-                        <td class=" text-center">
-                          <a [routerLink]="" (click)="editarCliente(cliente)">
-                            <i class="tim-icons icon-pencil"></i>
-                          </a>
-                        </td>
-                        <td class=" text-center">
-                          <a [routerLink]="" (click)="eliminarCliente(cliente)">
-                            <i class="tim-icons icon-simple-delete"></i>
-                          </a>
-                        </td>
-                      </tr>
-
-
-                    </tbody>
-                  </table>
-                </div>
+                
+                <table id="tablaclientes" class="compact nowrap stripe hover row-border" 
+                  datatable [dtOptions]="dtOptions2" [dtTrigger]="dtTrigger2">
+                <tbody>
+                  <tr *ngFor="let cliente of listaClientes">
+                    <td class=" text-center">{{cliente.cedula}}</td>
+                    <td class=" text-center">{{cliente.nombreCompleto}}</td>
+                    <td class=" text-center">{{cliente.direccion}}</td>
+                    <td class=" text-center">{{cliente.telefono}}</td>
+                    <td class=" text-center">{{cliente.correoElectronico}}</td>
+                    <td class=" text-center">
+                      <a [routerLink]="" (click)="editarCliente(cliente)">
+                        <i class="tim-icons icon-pencil"></i>
+                      </a>
+                    </td>
+                    <td class=" text-center">
+                      <a [routerLink]="" (click)="eliminarCliente(cliente)">
+                        <i class="tim-icons icon-simple-delete"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+                
               </div>
             </div>
           </div>
