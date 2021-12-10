@@ -18,6 +18,10 @@ export class HttpService {
     return this.http.post(this.constantes.URL_BASE + endPoint, params, {observe: 'response'});
   }
 
+  peticionPostC(endPoint: string){
+    return this.http.post(this.constantes.URL_BASE + endPoint, {observe: 'response'});
+  }
+
   peticionDelete(endPoint: string, identificador:any ){
     return this.http.delete(this.constantes.URL_BASE + endPoint + "/" +identificador,  {observe: 'response'});
   }

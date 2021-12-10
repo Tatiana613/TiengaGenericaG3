@@ -111,8 +111,7 @@ public class VentaController {
 					sale.getDetalleventa(), 
 					sale.getIvaventa(), 
 					sale.getTotalventa(), 
-					sale.getValorventa(), 
-					sale.getCiudadVenta()));
+					sale.getValorventa()));
 			return new ResponseEntity<>(_venta, HttpStatus.CREATED);
 		} catch (DuplicateKeyException e) {
 			return new ResponseEntity<>(null, HttpStatus.IM_USED);
@@ -135,7 +134,7 @@ public class VentaController {
 			_venta.setIvaventa(sale.getIvaventa());
 			_venta.setTotalventa(sale.getTotalventa());
 			_venta.setValorventa(sale.getValorventa());
-			_venta.setCiudadVenta(sale.getCiudadVenta());
+			
 
 			return new ResponseEntity<>(ventaRepository.save(_venta), HttpStatus.OK);
 		} else {
@@ -157,7 +156,7 @@ public class VentaController {
 			_venta.setIvaventa(sale.getIvaventa());
 			_venta.setTotalventa(sale.getTotalventa());
 			_venta.setValorventa(sale.getValorventa());
-			_venta.setCiudadVenta(sale.getCiudadVenta());
+			
 
 			return new ResponseEntity<>(ventaRepository.save(_venta), HttpStatus.OK);
 		} else {

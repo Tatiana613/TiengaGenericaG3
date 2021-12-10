@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Venta {
 	@Id
 	private String id;
-	private long cedulaCliente;
+	private String cedulaCliente;
 	
 	@Indexed(unique=true)
 	private long codigoVenta;
@@ -18,14 +18,14 @@ public class Venta {
 	private double ivaVenta;
 	private double totalVenta;
 	private double valorVenta;
-	private String ciudadVenta;
+	
 	
 	public Venta() {
 		this.detalleVenta= new ArrayList<DetalleVenta>();
 	}
 
-	public Venta(long cedulacliente, long codigoventa, ArrayList<DetalleVenta> detalleventa, double ivaventa,
-			double totalVenta, double valorVenta, String ciudadVenta) {
+	public Venta(String cedulacliente, long codigoventa, ArrayList<DetalleVenta> detalleventa, double ivaventa,
+			double totalVenta, double valorVenta) {
 		super();
 		this.detalleVenta= new ArrayList<DetalleVenta>();
 		this.cedulaCliente = cedulacliente;
@@ -34,7 +34,7 @@ public class Venta {
 		this.ivaVenta = ivaventa;
 		this.totalVenta = totalVenta;
 		this.valorVenta = valorVenta;
-		this.ciudadVenta = ciudadVenta;
+		
 	}
 
 	public String getId() {
@@ -45,11 +45,11 @@ public class Venta {
 		this.id = id;
 	}
 
-	public long getCedulacliente() {
+	public String getCedulacliente() {
 		return cedulaCliente;
 	}
 
-	public void setCedulacliente(long cedulacliente) {
+	public void setCedulacliente(String cedulacliente) {
 		this.cedulaCliente = cedulacliente;
 	}
 
@@ -93,13 +93,7 @@ public class Venta {
 		this.valorVenta = valorventa;
 	}
 
-	public String getCiudadVenta() {
-		return ciudadVenta;
-	}
-
-	public void setCiudadVenta(String ciudadVenta) {
-		this.ciudadVenta = ciudadVenta;
-	}
+	
 	
 	
 }

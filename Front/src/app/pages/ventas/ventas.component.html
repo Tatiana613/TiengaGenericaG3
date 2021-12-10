@@ -57,12 +57,17 @@
             </div>
             <div class=" col-md-1 pr-md-1">
               <div class=" form-group">                
-                <input class=" form-control" placeholder="Consecutivo" type="text" />
+                <input class=" form-control" placeholder="Consecutivo" type="text" [(ngModel)]="consecutivo" />
               </div>
             </div>
             <div class=" col-md-2 pr-md-1">
               <div class=" form-group">                
-                <input class=" form-control" placeholder="Ciudad" type="text" />
+                <select [(ngModel)]="ciudad">
+                  <option selected>Seleccionar .....</option>
+                  <option value="1">Bogotá</option>
+                  <option value="2">Medellin</option>
+                  <option value="3">Cali</option>
+              </select>
               </div>
             </div>
             
@@ -95,11 +100,11 @@
 
             <div class=" col-md-3 pl-md-1">
               <div class=" form-group">                
-                <input class=" form-control" placeholder=" Escribir codigo de Producto" type="num" [(ngModel)]="codigoProducto"/>
+                <input class=" form-control" placeholder=" Escribir codigo de Producto" type="num" [(ngModel)]="codigoProducto1"/>
               </div>
             </div>
             
-            <button class="btn btn-danger btn-sm" (click)="[consultaProducto(codigoProducto)]">
+            <button class="btn btn-danger btn-sm" (click)="[consultaProducto(codigoProducto1)]">
               <i class="fas fa-search"></i> Consultar
             </button>
             <div class=" col-md-4 px-md-1">
@@ -109,12 +114,12 @@
             </div>
             <div class=" col-md-1 px-md-1">
               <div class=" form-group">                
-                <input class=" form-control" placeholder="Unidades" type="text" />
+                <input class=" form-control" placeholder="Unidades" type="text" [(ngModel)]="cantProducto1" (input)="calcPrecioProd(1)" />
               </div>
             </div>
             <div class=" col-md-2 px-md-1">
-              <div class=" form-group">                
-                <input class=" form-control" placeholder="Valor Total" type="num" />
+              <div class=" form-group">                                
+                <input class=" form-control" placeholder="Valor Total" type="num" [(ngModel)]="precioProducto1"/>
               </div>
             </div>
 
@@ -139,37 +144,37 @@
             </div>
             <div class=" col-md-1 px-md-1">
               <div class=" form-group">
-                <input class=" form-control" placeholder="Unidades" type="text" />
+                <input class=" form-control" placeholder="Unidades" type="text" [(ngModel)]="cantProducto2" (input)="calcPrecioProd(2)"/>
               </div>
             </div>
             <div class=" col-md-2 px-md-1">
               <div class="float-right">
                 <div class=" form-group">
-                  <input class=" form-control" placeholder="Valor Total" type="num" />
+                  <input class=" form-control" placeholder="Valor Total" type="num" [(ngModel)]="precioProducto2" />
                 </div>
               </div>
             </div>
             <div class=" col-md-3 pl-md-1">
               <div class=" form-group">
-                <input class=" form-control" placeholder=" Escribir codigo de Producto" type="num" />
+                <input class=" form-control" placeholder=" Escribir codigo de Producto" type="num" [(ngModel)]="codigoProducto3"/>
               </div>
             </div>
-            <button class="btn btn-danger btn-sm">
+            <button class="btn btn-danger btn-sm" (click)="[consultaProducto3(codigoProducto3)]">
               <i class="fas fa-search"></i> Consultar
             </button>
             <div class=" col-md-4 px-md-1">
               <div class=" form-group">
-                <input class=" form-control" placeholder="Nombre Producto" type="text" />
+                <input class=" form-control" placeholder="Nombre Producto" type="text" [(ngModel)]="nombreProducto3"/>
               </div>
             </div>
             <div class=" col-md-1 px-md-1">
               <div class=" form-group">
-                <input class=" form-control" placeholder="Unidades" type="text" />
+                <input class=" form-control" placeholder="Unidades" type="text" [(ngModel)]="cantProducto3" (input)="calcPrecioProd(3)"/>
               </div>
             </div>
             <div class=" col-md-2 px-md-1">
               <div class=" form-group">
-                <input class=" form-control" placeholder="Valor Total" type="num" />
+                <input class=" form-control" placeholder="Valor Total" type="num" [(ngModel)]="precioProducto3" />
               </div>
             </div>
           </div>
@@ -181,20 +186,26 @@
             <div class="float-right">
               <div class=" col-md-30">
                 <div class=" form-group">
-                  <input class=" form-control" placeholder="Total Venta" type="text" />
+                  <span  id="basic-addon1" style="font-size: 12px;">Total venta</span>
+                  <input class=" form-control" placeholder="Total Venta" type="text" [(ngModel)]="totalventa" />
                 </div>
               </div>
               <div class=" col-md-30">
                 <div class=" form-group">
-                  <input class=" form-control" placeholder="Total Iva" type="text" />
+                  <span  id="basic-addon1" style="font-size: 12px;">Valor Iva</span>
+                  <input class=" form-control" placeholder="Total Iva" type="text" [(ngModel)]="totaliva" />
                 </div>
               </div>
               <div class=" col-md-30">
                 <div class=" form-group">
-                  <input class=" form-control" placeholder="Total con Iva" type="text" />
+                  <span  id="basic-addon1" style="font-size: 12px;">Total a pagar</span>
+                  <input class=" form-control" placeholder="Total con Iva" type="text" [(ngModel)]="totalplusiva" />
                 </div>
               </div>
             </div>
-            <button class="btn btn-danger float-center">
+            <button class="btn btn-danger float-center" (click)="crearVenta()">
               <i class="fas fa-check"></i> Confirmar
+            </button>
+            <button class="btn btn-danger float-center" (click)="reload()">
+              <i class="fas fa-check"></i> Borrar
             </button>
