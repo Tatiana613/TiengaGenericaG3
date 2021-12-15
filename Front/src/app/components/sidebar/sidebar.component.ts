@@ -28,9 +28,9 @@ export const ROUTES: RouteInfo[] = [
     class: ''
   },
   {
-    path: "/dashboard",
-    title: "Dashboard",
-    icon: "icon-chart-pie-36",
+    path: "/ventas",
+    title: "Ventas",
+    icon: "icon-cart",
     class: ""
   },
   {

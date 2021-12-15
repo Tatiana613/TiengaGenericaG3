@@ -1,12 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductosService {
+export class ReportesService {
 
-  apiURL:string = "http://localhost:8080/api/productos";
+  apiURL:string = "http://localhost:8080/api/clientes";
 
   constructor(private httpobject:HttpClient) { }
 
@@ -46,3 +46,4 @@ export class ProductosService {
     );
   }
 }
+

@@ -5,6 +5,7 @@ import { Subject, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 
+
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
@@ -52,6 +53,7 @@ export class ProductosComponent implements OnInit {
     //funcion para configurar la datatable
     this.dtOptions = {
       pagingType: 'full_numbers',
+      destroy: true,
       columns: [{
         title: 'Código',
       },{
@@ -110,6 +112,7 @@ export class ProductosComponent implements OnInit {
   // Metodo DataTables
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
+    
   }
 
 
