@@ -62,6 +62,19 @@ public class ClienteController {
 		}
 	}
 	
+	@GetMapping("/clientes/cedula/{cedula}")
+	public ResponseEntity<Cliente> getClienteByCedula(@PathVariable("cedula") String cedula) {
+		Cliente aux=clienteRepository.findBycedula(cedula).get(0);
+		Optional<Cliente> clienteData =  Optional.of(aux);
+
+		if (clienteData.isPresent()) {
+			return new ResponseEntity<>(clienteData.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	
 	@PostMapping("/clientes")
 	public ResponseEntity<Cliente> createCliente(@RequestBody Cliente client) {
 		try {
